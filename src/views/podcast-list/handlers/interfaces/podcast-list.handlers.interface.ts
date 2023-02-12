@@ -3,9 +3,13 @@ import { PodcastListItemType } from "../../../../interfaces/PodcastListItem.inte
 
 export interface PodcastListHandlersType {
   setPodcastList: (podcastList: PodcastListItemType[]) => void;
-  setIsLoading: (isLoading: boolean) => void;
+  setIsFetching: (isFetching: boolean) => void;
+  setFilteredPodcastList: (filteredPodcastList: PodcastListItemType[]) => void;
+  setIsFiltering: (isFiltering: boolean) => void;
+  podcastList: PodcastListItemType[];
 }
 
 export interface PodcastListHandlersReturnType {
   handleGetPodcastList: () => void;
+  handleFilterPodcastList: (event: React.FormEvent<HTMLInputElement>) => void;
 }

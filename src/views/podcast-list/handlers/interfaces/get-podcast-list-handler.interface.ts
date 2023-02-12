@@ -3,5 +3,5 @@ import { PodcastListItemType } from "../../../../interfaces/PodcastListItem.inte
 
 export interface GetPodcastListHandlerType {
   setPodcastList: (podcastList: PodcastListItemType[]) => void;
-  setIsLoading: (isLoading: boolean) => void;
+  setIsFetching: (isFetching: boolean) => void;
 }

@@ -17,4 +17,5 @@ export const StyledLoader = styled.div`
   width: 50px;
   height: 50px;
   animation: ${rotate} 1s linear infinite;
+  margin: 20% auto 0 auto;
 `;

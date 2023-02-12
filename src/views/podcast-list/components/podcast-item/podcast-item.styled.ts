@@ -1,7 +1,8 @@
 // DEPENDENCIES
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const PodcastItemContainer = styled.div`
+export const PodcastItemContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +14,7 @@ export const PodcastItemContainer = styled.div`
   height: auto;
   position: relative;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);

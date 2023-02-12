@@ -7,7 +7,7 @@ const Header = (): React.ReactElement => {
   return (
     <HeaderContainer>
       <NavMenu>
-        <NavItem>Inicio</NavItem>
+        <NavItem to="/">Home</NavItem>
       </NavMenu>
     </HeaderContainer>
   );

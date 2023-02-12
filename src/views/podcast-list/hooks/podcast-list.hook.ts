@@ -8,11 +8,16 @@ import { PodcastListHookReturnType } from "./interfaces/podcast-list-hook.interf
 
 const usePodcastListHook = (): PodcastListHookReturnType => {
   const [podcastList, setPodcastList] = useState<PodcastListItemType[] | []>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [filteredPodcastList, setFilteredPodcastList] = useState<PodcastListItemType[] | []>([]);
+  const [isFiltering, setIsFiltering] = useState<boolean>(false);
 
-  const { handleGetPodcastList } = PodcastListHandlers({
+  const { handleGetPodcastList, handleFilterPodcastList } = PodcastListHandlers({
     setPodcastList,
-    setIsLoading,
+    setIsFetching,
+    setFilteredPodcastList,
+    setIsFiltering,
+    podcastList,
   });
 
   useEffect(() => {
@@ -20,8 +25,11 @@ const usePodcastListHook = (): PodcastListHookReturnType => {
   }, []);
 
   return {
+    handleFilterPodcastList,
     podcastList,
-    isLoading,
+    isFetching,
+    filteredPodcastList,
+    isFiltering,
   };
 };
 

@@ -1,5 +1,6 @@
 // DEPENDENCIES
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -15,13 +16,14 @@ export const NavMenu = styled.div`
   justify-content: center;
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(Link)`
   margin: 0 10px;
   cursor: pointer;
   color: #fff;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none;
   &:hover {
     opacity: 0.8;
   }

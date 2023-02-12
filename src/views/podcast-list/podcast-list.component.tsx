@@ -3,23 +3,28 @@ import React from "react";
 // HOOKS
 import usePodcastListHook from "./hooks/podcast-list.hook";
 // COMPONENTS
+import SearchBar from "./components/search-bar/search-bar.component";
 import Loader from "../../components/loader/loader.component";
 import PodcastItem from "./components/podcast-item/podcast-item.component";
 // STYLED COMPONENTS
 import { PodcastListContainer, PodcastListWrapper } from "./podcast-list.styled";
 
-const PodcastList = (): React.ReactElement => {
-  const { podcastList, isLoading } = usePodcastListHook();
-  console.log(podcastList);
+const PodcastList: React.FC = (): React.ReactElement => {
+  const { handleFilterPodcastList, podcastList, isFetching, filteredPodcastList, isFiltering } = usePodcastListHook();
   return (
     <PodcastListContainer>
-      {/* Todo: Create BarSearch component */}
+      <SearchBar
+        podcastListLength={isFiltering ? filteredPodcastList.length : podcastList.length}
+        handleFilterPodcastList={handleFilterPodcastList}
+      />
 
-      {!isLoading && podcastList.length > 0 ? (
+      {!isFetching && podcastList.length > 0 ? (
         <PodcastListWrapper>
-          {podcastList.map((podcast) => (
-            <PodcastItem key={podcast.id.attributes["im:id"]} podcast={podcast} />
-          ))}
+          {isFiltering
+            ? filteredPodcastList.map((podcast) => (
+                <PodcastItem key={podcast.id.attributes["im:id"]} podcast={podcast} />
+              ))
+            : podcastList.map((podcast) => <PodcastItem key={podcast.id.attributes["im:id"]} podcast={podcast} />)}
         </PodcastListWrapper>
       ) : (
         <Loader />
