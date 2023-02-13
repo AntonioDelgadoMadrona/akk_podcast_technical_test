@@ -3,4 +3,5 @@ import { PodcastDetailsEpisodeType } from "./../../../../../interfaces/PodcastDe
 
 export interface PodcastDetailsEpisodesPropsType {
   episodes: PodcastDetailsEpisodeType[];
+  podcastId: string;
 }

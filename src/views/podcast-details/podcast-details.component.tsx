@@ -4,18 +4,18 @@ import React from "react";
 import usePodcastDetailsHook from "./hooks/podcast-details.hook";
 // COMPONENTS
 import Loader from "../../components/loader/loader.component";
-import PodcastDetailInfo from "./components/podcast-details-info/podcast-details-info.component";
+import SummaryPodcast from "../../components/summary-podcast/summary-podcast.component";
 import PodcastDetailsEpisodes from "./components/podcast-details-episodes/podcast-details-episodes.component";
 // STYLED COMPONENTS
 import { PodcastDetailsContainer } from "./podcast-details.styled";
 
 const PodcastDetails: React.FC = (): React.ReactElement => {
-  const { podcastDetails, isFetching } = usePodcastDetailsHook();
+  const { podcastDetails, episodeList, isFetching, podcastId } = usePodcastDetailsHook();
   return (
     <PodcastDetailsContainer isFetching={isFetching}>
       {isFetching && <Loader />}
-      {!isFetching && podcastDetails?.details && <PodcastDetailInfo details={podcastDetails.details} />}
-      {!isFetching && podcastDetails?.episodes && <PodcastDetailsEpisodes episodes={podcastDetails.episodes} />}
+      {!isFetching && podcastDetails && <SummaryPodcast details={podcastDetails} />}
+      {!isFetching && episodeList?.length && <PodcastDetailsEpisodes episodes={episodeList} podcastId={podcastId} />}
     </PodcastDetailsContainer>
   );
 };

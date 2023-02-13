@@ -1,7 +1,9 @@
 // INTERFACES
-import { PodcastDetailsType } from "../../../../interfaces/PodcastDetails.interface";
+import { PodcastDetailsInfoType, PodcastDetailsEpisodeType } from "../../../../interfaces/PodcastDetails.interface";
 
 export interface PodcastDetailsHookReturnType {
-  podcastDetails: PodcastDetailsType | null;
+  podcastDetails: PodcastDetailsInfoType | null;
+  episodeList: PodcastDetailsEpisodeType[] | null;
   isFetching: boolean;
+  podcastId: string;
 }

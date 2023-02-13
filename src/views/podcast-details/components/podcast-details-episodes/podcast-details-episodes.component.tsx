@@ -13,7 +13,10 @@ import {
 // INTERFACES
 import { PodcastDetailsEpisodesPropsType } from "./interfaces/podcast-details-episodes.interface";
 
-const PodcastDetailsEpisodes: React.FC<PodcastDetailsEpisodesPropsType> = ({ episodes }): React.ReactElement => {
+const PodcastDetailsEpisodes: React.FC<PodcastDetailsEpisodesPropsType> = ({
+  episodes,
+  podcastId,
+}): React.ReactElement => {
   return (
     <PodcastDetailsEpisodesContainer>
       <EpisodesHeader>
@@ -27,10 +30,10 @@ const PodcastDetailsEpisodes: React.FC<PodcastDetailsEpisodesPropsType> = ({ epi
         </EpisodesListHeader>
         <EpisodesListBody>
           {episodes.length > 0 &&
-            episodes.map(({ episodeGuid, trackName }) => {
+            episodes.map(({ trackId, trackName }) => {
               return (
-                <EpisodesListBodyItem key={episodeGuid}>
-                  <Title to={`/podcast/${episodeGuid}/episode/${episodeGuid}`}>{trackName}</Title>
+                <EpisodesListBodyItem key={trackId}>
+                  <Title to={`/podcast/${podcastId}/episode/${trackId}`}>{trackName}</Title>
                   <span>12/02/2023</span>
                   <span>15:00</span>
                 </EpisodesListBodyItem>

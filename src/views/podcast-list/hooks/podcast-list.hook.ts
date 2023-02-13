@@ -12,6 +12,10 @@ const usePodcastListHook = (): PodcastListHookReturnType => {
   const [filteredPodcastList, setFilteredPodcastList] = useState<PodcastListItemType[] | []>([]);
   const [isFiltering, setIsFiltering] = useState<boolean>(false);
 
+  useEffect(() => {
+    handleGetPodcastList();
+  }, []);
+
   const { handleGetPodcastList, handleFilterPodcastList } = PodcastListHandlers({
     setPodcastList,
     setIsFetching,
@@ -19,10 +23,6 @@ const usePodcastListHook = (): PodcastListHookReturnType => {
     setIsFiltering,
     podcastList,
   });
-
-  useEffect(() => {
-    handleGetPodcastList();
-  }, []);
 
   return {
     handleFilterPodcastList,

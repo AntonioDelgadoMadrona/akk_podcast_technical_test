@@ -6,13 +6,8 @@ export interface PodcastDetailsInfoType {
 }
 
 export interface PodcastDetailsEpisodeType {
-  episodeGuid: string;
+  trackId: number;
   releaseDate: string;
   trackName: string;
   duration: number;
-}
-
-export interface PodcastDetailsType {
-  details: PodcastDetailsInfoType | null;
-  episodes: PodcastDetailsEpisodeType[] | null;
 }

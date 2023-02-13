@@ -1,7 +1,8 @@
 // DEPENDENCIES
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PodcastDetailsInfoContainer = styled.div`
+export const SummaryPodcastContainer = styled.div`
   display: grid;
   grid-template-rows: max-content auto auto;
   row-gap: 10px;
@@ -11,14 +12,19 @@ export const PodcastDetailsInfoContainer = styled.div`
   max-height: max-content;
 `;
 
-export const Img = styled.img`
+export const ImgLinkContainer = styled(Link)`
   width: 150px;
   height: 100%;
-  border-radius: 10px;
   margin: 0 auto;
 `;
 
-export const DetailsContainer = styled.div`
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+`;
+
+export const DetailsContainer = styled(Link)`
   display: flex;
   align-items: center;
   border-top: 1px solid #e0e0e0;
@@ -26,6 +32,7 @@ export const DetailsContainer = styled.div`
   display: grid;
   grid-template-rows: auto auto;
   justify-content: left;
+  text-decoration: none;
 `;
 
 export const Title = styled.h5`

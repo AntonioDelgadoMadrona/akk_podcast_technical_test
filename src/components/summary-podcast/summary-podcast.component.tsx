@@ -2,23 +2,26 @@
 import React from "react";
 // STYLED COMPONENTS
 import {
-  PodcastDetailsInfoContainer,
+  SummaryPodcastContainer,
+  ImgLinkContainer,
   Img,
   DetailsContainer,
   Title,
   Artist,
   DescriptionContainer,
-} from "./podcast-details-info.styled";
+} from "./summary-podcast.styled";
 // TYPES
-import { PodcastDetailsInfoPropsType } from "./interfaces/podcast-details-info.interface";
+import { SummaryPodcastPropsType } from "./interfaces/summary-podcast.interface";
 
-const PodcastDetailsInfo: React.FC<PodcastDetailsInfoPropsType> = ({
+const SummaryPodcast: React.FC<SummaryPodcastPropsType> = ({
   details: { artistName, collectionId, collectionName, artworkUrl100 },
 }): React.ReactElement => {
   return (
-    <PodcastDetailsInfoContainer key={collectionId}>
-      <Img src={artworkUrl100} alt={collectionName} />
-      <DetailsContainer>
+    <SummaryPodcastContainer key={collectionId}>
+      <ImgLinkContainer to={`/podcast/${collectionId}`}>
+        <Img src={artworkUrl100} alt={collectionName} />
+      </ImgLinkContainer>
+      <DetailsContainer to={`/podcast/${collectionId}`}>
         <Title>{collectionName}</Title>
         <Artist>by {artistName}</Artist>
       </DetailsContainer>
@@ -26,8 +29,8 @@ const PodcastDetailsInfo: React.FC<PodcastDetailsInfoPropsType> = ({
         <p>Description:</p>
         <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
       </DescriptionContainer>
-    </PodcastDetailsInfoContainer>
+    </SummaryPodcastContainer>
   );
 };
 
-export default PodcastDetailsInfo;
+export default SummaryPodcast;

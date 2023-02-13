@@ -25,8 +25,9 @@ export const NavItem = styled.div`
     margin-left: 5px;
     text-decoration: none;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     opacity: 0.8;
+    font-style: italic;
   }
   & > a:hover {
     opacity: 1;

@@ -1,8 +1,9 @@
 // INTERFACES
-import { PodcastDetailsType } from "./../../../../interfaces/PodcastDetails.interface";
+import { PodcastDetailsInfoType, PodcastDetailsEpisodeType } from "./../../../../interfaces/PodcastDetails.interface";
 
 export interface PodcastDetailsHandlersType {
-  setPodcastDetails: (podcastDetails: PodcastDetailsType) => void;
+  setPodcastDetails: (podcastDetails: PodcastDetailsInfoType) => void;
+  setEpisodeList: (episodeList: PodcastDetailsEpisodeType[]) => void;
   setIsFetching: (isFetching: boolean) => void;
 }
 

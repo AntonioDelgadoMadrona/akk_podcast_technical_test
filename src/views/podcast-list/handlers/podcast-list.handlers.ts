@@ -24,8 +24,11 @@ const filterPodcastListHandler = ({ event, setFilteredPodcastList, setIsFilterin
     const filteredPodcastList = podcastList.filter((podcast: PodcastListItemType) => {
       const {
         "im:name": { label },
+        "im:artist": { label: artistLabel },
       } = podcast;
-      return label.toLowerCase().includes(value.toLowerCase());
+      return (
+        label.toLowerCase().includes(value.toLowerCase()) || artistLabel.toLowerCase().includes(value.toLowerCase())
+      );
     });
     setFilteredPodcastList(filteredPodcastList);
   } else {
