@@ -26,6 +26,7 @@ describe("Podcast Details Handlers", () => {
   });
 
   const params = {
+    setPodcastDetailStoraged: jest.fn(),
     setPodcastDetails: jest.fn(),
     setEpisodeList: jest.fn(),
     setIsFetching: jest.fn(),
@@ -41,6 +42,13 @@ describe("Podcast Details Handlers", () => {
     expect(params.setPodcastDetails).toHaveBeenCalledWith(mockedResponse[0]);
     expect(params.setEpisodeList).toHaveBeenCalled();
     expect(params.setEpisodeList).toHaveBeenCalledWith([mockedResponse[1]]);
+    expect(params.setPodcastDetailStoraged).toHaveBeenCalled();
+    expect(params.setPodcastDetailStoraged).toHaveBeenCalledWith({
+      content: {
+        details: mockedResponse[0],
+        episodes: [mockedResponse[1]],
+      },
+    });
     expect(params.setIsFetching).toHaveBeenCalledWith(false);
   });
 });

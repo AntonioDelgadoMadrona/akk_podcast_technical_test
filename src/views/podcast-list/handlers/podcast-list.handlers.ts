@@ -5,7 +5,11 @@ import { PodcastListHandlersType, PodcastListHandlersReturnType } from "./interf
 import { GetPodcastListHandlerType } from "./interfaces/get-podcast-list-handler.interface";
 import { PodcastListItemType } from "../../../interfaces/PodcastListItem.interface";
 
-const getPodcastListHandler = async ({ setPodcastList, setIsFetching }: GetPodcastListHandlerType): Promise<any> => {
+const getPodcastListHandler = async ({
+  setPodcastListStoraged,
+  setPodcastList,
+  setIsFetching,
+}: GetPodcastListHandlerType): Promise<any> => {
   setIsFetching(true);
   const response = await getPodcastListResolver();
   if (response) {
@@ -22,6 +26,7 @@ const getPodcastListHandler = async ({ setPodcastList, setIsFetching }: GetPodca
       return { id, artistName, image, name };
     });
     setPodcastList(filteredEntry);
+    setPodcastListStoraged({ content: [...filteredEntry] });
   } else {
     console.error("Error on getPodcastListHandler()");
   }
@@ -43,13 +48,14 @@ const filterPodcastListHandler = ({ event, setFilteredPodcastList, setIsFilterin
 };
 
 const PodcastListHandlers = ({
+  setPodcastListStoraged,
   setPodcastList,
   setIsFetching,
   setFilteredPodcastList,
   setIsFiltering,
   podcastList,
 }: PodcastListHandlersType): PodcastListHandlersReturnType => ({
-  handleGetPodcastList: () => getPodcastListHandler({ setPodcastList, setIsFetching }),
+  handleGetPodcastList: () => getPodcastListHandler({ setPodcastListStoraged, setPodcastList, setIsFetching }),
   handleFilterPodcastList: (event: React.FormEvent<HTMLInputElement>) =>
     filterPodcastListHandler({ event, setFilteredPodcastList, setIsFiltering, podcastList }),
 });

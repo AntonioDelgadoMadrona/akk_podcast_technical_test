@@ -5,6 +5,7 @@ import { PodcastDetailsInfoType } from "../../../../interfaces/PodcastDetails.in
 export interface GetEpisodeDetailsHandlerType {
   podcastId: string;
   episodeId: string;
+  setEpisodeDetailsStoraged: (episodeDetails: any) => void;
   setPodcastDetails: (podcastDetails: PodcastDetailsInfoType) => void;
   setEpisodeDetails: (episodeDetails: EpisodeDetailsType) => void;
   setIsFetching: (isFetching: boolean) => void;

@@ -43,6 +43,7 @@ describe("Podcast List Handlers", () => {
   });
 
   const params = {
+    setPodcastListStoraged: jest.fn(),
     setPodcastList: jest.fn(),
     setIsFetching: jest.fn(),
     setFilteredPodcastList: jest.fn(),
@@ -58,6 +59,8 @@ describe("Podcast List Handlers", () => {
     expect(params.setIsFetching).toHaveBeenCalledWith(true);
     expect(params.setPodcastList).toHaveBeenCalled();
     expect(params.setPodcastList).toHaveBeenCalledWith(mockedResponseUpdated);
+    expect(params.setPodcastListStoraged).toHaveBeenCalled();
+    expect(params.setPodcastListStoraged).toHaveBeenCalledWith({ content: mockedResponseUpdated });
     expect(params.setIsFetching).toHaveBeenCalledWith(false);
   });
 

@@ -10,6 +10,7 @@ import { PodcastDetailsInfoType, PodcastDetailsEpisodeType } from "./../../../in
 
 const getPodcastDetailsHandler = async ({
   podcastId,
+  setPodcastDetailStoraged,
   setPodcastDetails,
   setEpisodeList,
   setIsFetching,
@@ -18,17 +19,24 @@ const getPodcastDetailsHandler = async ({
   const response = await getPodcastDetailsResolver(podcastId);
   if (response) {
     const { artistName, artworkUrl100, collectionId, collectionName }: PodcastDetailsInfoType = response[0];
-    setPodcastDetails({
+    const podcastDetails: PodcastDetailsInfoType = {
       artistName,
       artworkUrl100,
       collectionId,
       collectionName,
-    });
-    const podcastEpisodes: PodcastDetailsEpisodeType[] = response.slice(1).map((episode: PodcastDetailsEpisodeType) => {
+    };
+    setPodcastDetails({ ...podcastDetails });
+    const episodeList: PodcastDetailsEpisodeType[] = response.slice(1).map((episode: PodcastDetailsEpisodeType) => {
       const { trackName, trackId, releaseDate, duration = 10 } = episode;
       return { trackId, trackName, releaseDate, duration };
     });
-    setEpisodeList([...podcastEpisodes]);
+    setEpisodeList([...episodeList]);
+    setPodcastDetailStoraged({
+      content: {
+        details: podcastDetails,
+        episodes: episodeList,
+      },
+    });
   } else {
     console.error("Error on getPodcastDetailsHandler()");
   }
@@ -36,12 +44,13 @@ const getPodcastDetailsHandler = async ({
 };
 
 const PodcastDetailsHandlers = ({
+  setPodcastDetailStoraged,
   setPodcastDetails,
   setEpisodeList,
   setIsFetching,
 }: PodcastDetailsHandlersType): PodcastDetailsHandlersReturnType => ({
   handleGetPodcastDetails: (podcastId) =>
-    getPodcastDetailsHandler({ podcastId, setPodcastDetails, setEpisodeList, setIsFetching }),
+    getPodcastDetailsHandler({ podcastId, setPodcastDetailStoraged, setPodcastDetails, setEpisodeList, setIsFetching }),
 });
 
 export default PodcastDetailsHandlers;

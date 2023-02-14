@@ -12,6 +12,7 @@ import { PodcastDetailsInfoType } from "../../../interfaces/PodcastDetails.inter
 const getEpisodeDetailsHandler = async ({
   podcastId,
   episodeId,
+  setEpisodeDetailsStoraged,
   setPodcastDetails,
   setEpisodeDetails,
   setIsFetching,
@@ -20,18 +21,21 @@ const getEpisodeDetailsHandler = async ({
   const response = await getEpisodeDetailsResolver(podcastId, episodeId);
   if (response) {
     const { artistName, artworkUrl100, collectionId, collectionName }: PodcastDetailsInfoType = response[0];
-    setPodcastDetails({
-      artistName,
-      artworkUrl100,
-      collectionId,
-      collectionName,
-    });
-    const { description = "Empty description", previewUrl, trackName, trackId }: EpisodeDetailsType = response[1];
-    setEpisodeDetails({
-      description,
+    const podcastDetails = { artistName, artworkUrl100, collectionId, collectionName };
+    setPodcastDetails({ ...podcastDetails });
+    const {
+      description = "Empty description",
       previewUrl,
       trackName,
       trackId,
+    } = response.find((episode: EpisodeDetailsType) => episode.trackId === Number(episodeId));
+    const episodeDetails = { description, previewUrl, trackName, trackId };
+    setEpisodeDetails({ ...episodeDetails });
+    setEpisodeDetailsStoraged({
+      content: {
+        podcastDetails: { ...podcastDetails },
+        episodeDetails: { ...episodeDetails },
+      },
     });
   } else {
     console.error("Error on getEpisodeDetailsHandler()");
@@ -40,12 +44,20 @@ const getEpisodeDetailsHandler = async ({
 };
 
 const EpisodeDetailsHandlers = ({
+  setEpisodeDetailsStoraged,
   setPodcastDetails,
   setEpisodeDetails,
   setIsFetching,
 }: EpisodeDetailsHandlersType): EpisodeDetailsHandlersReturnType => ({
   handleGetEpisodeDetails: (podcastId, episodeId) =>
-    getEpisodeDetailsHandler({ podcastId, episodeId, setPodcastDetails, setEpisodeDetails, setIsFetching }),
+    getEpisodeDetailsHandler({
+      podcastId,
+      episodeId,
+      setEpisodeDetailsStoraged,
+      setPodcastDetails,
+      setEpisodeDetails,
+      setIsFetching,
+    }),
 });
 
 export default EpisodeDetailsHandlers;
