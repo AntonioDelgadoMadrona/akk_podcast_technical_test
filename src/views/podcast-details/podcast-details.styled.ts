@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import styled from "styled-components";
 
-export const PodcastDetailsContainer = styled.div`
+export const PodcastDetailsContainer = styled.div.attrs({
+  "data-testid": "podcast-details-component",
+})`
   margin-top: 30px;
   display: grid;
   grid-template-columns: ${({ isFetching }: { isFetching: boolean }) => (isFetching ? "1fr" : "25% 65%")};

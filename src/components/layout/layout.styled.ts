@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import styled from "styled-components";
 
-export const LayoutContainer = styled.div`
+export const LayoutContainer = styled.div.attrs({
+  "data-testid": "layout-component",
+})`
   width: 100%;
   height: 100%;
 `;
@@ -16,7 +18,7 @@ export const ChildrenContainer = styled.div`
 export const ChildrenHeader = styled.div`
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid #BDBDBD;
+  border-bottom: 1px solid #bdbdbd;
 
   & > h4 {
     color: #1a73e8;

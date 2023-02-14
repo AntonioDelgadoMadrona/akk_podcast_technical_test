@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import styled from "styled-components";
 
-export const PodcastListContainer = styled.div`
+export const PodcastListContainer = styled.div.attrs({
+  "data-testid": "podcast-list-component",
+})`
   width: 100%;
   height: 100%;
 `;

@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import styled from "styled-components";
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled.div.attrs({
+  "data-testid": "search-bar-component",
+})`
   width: 100%;
   height: 100%;
   display: flex;

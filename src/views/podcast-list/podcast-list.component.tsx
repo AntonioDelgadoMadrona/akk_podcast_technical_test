@@ -14,17 +14,15 @@ const PodcastList: React.FC = (): React.ReactElement => {
   return (
     <PodcastListContainer>
       <SearchBar
-        podcastListLength={isFiltering ? filteredPodcastList.length : podcastList.length}
+        podcastListLength={isFiltering ? filteredPodcastList?.length : podcastList?.length}
         handleFilterPodcastList={handleFilterPodcastList}
       />
 
       {!isFetching && podcastList.length > 0 ? (
         <PodcastListWrapper>
           {isFiltering
-            ? filteredPodcastList.map((podcast) => (
-                <PodcastItem key={podcast.id.attributes["im:id"]} podcast={podcast} />
-              ))
-            : podcastList.map((podcast) => <PodcastItem key={podcast.id.attributes["im:id"]} podcast={podcast} />)}
+            ? filteredPodcastList.map((podcast) => <PodcastItem key={podcast.id} podcast={podcast} />)
+            : podcastList.map((podcast) => <PodcastItem key={podcast.id} podcast={podcast} />)}
         </PodcastListWrapper>
       ) : (
         <Loader />

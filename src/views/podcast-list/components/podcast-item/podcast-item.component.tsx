@@ -6,12 +6,12 @@ import { PodcastItemContainer, Img, Title, Author } from "./podcast-item.styled"
 import { PodcastItemPropsType } from "./interfaces/podcast-item.interface";
 
 const PodcastItem: React.FC<PodcastItemPropsType> = ({ podcast }): React.ReactElement => {
-  const { id, "im:artist": artist, "im:image": image, "im:name": name } = podcast;
+  const { id, artistName, image, name } = podcast;
   return (
-    <PodcastItemContainer to={`/podcast/${id.attributes["im:id"]}`}>
-      <Img src={image[1].label} alt={name.label} />
-      <Title>{name.label}</Title>
-      <Author>Author: {artist.label}</Author>
+    <PodcastItemContainer to={`/podcast/${id}`}>
+      <Img src={image} alt={name} />
+      <Title>{name}</Title>
+      <Author>Author: {artistName}</Author>
     </PodcastItemContainer>
   );
 };

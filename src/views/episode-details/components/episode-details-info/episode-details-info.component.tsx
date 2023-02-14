@@ -5,14 +5,25 @@ import { EpisodeDetailsInfoContainer, Title, Description, AudioPlayer } from "./
 // INTERFACES
 import { EpisodeDetailsInfoPropsType } from "./interfaces/episode-details-info.interface";
 
+// Check if description is an string or contains html tags
+export const isHtml = (description: string): boolean => {
+  const doc = new DOMParser().parseFromString(description, "text/html");
+  return Array.from(doc.body.childNodes).some((node) => node.nodeType === 1);
+};
+const descriptionHtml = (description: string): React.ReactElement => {
+  return <div dangerouslySetInnerHTML={{ __html: description }} />;
+};
+
 const EpisodeDetailsInfo: React.FC<EpisodeDetailsInfoPropsType> = ({ episodeDetails }): React.ReactElement => {
+  const { trackName, description, previewUrl } = episodeDetails;
+  const desciptionContent = isHtml(description) ? descriptionHtml(description) : description;
   return (
     <EpisodeDetailsInfoContainer>
-      <Title>{episodeDetails?.trackName}</Title>
-      <Description>{episodeDetails?.description}</Description>
+      <Title>{trackName}</Title>
+      <Description>{desciptionContent}</Description>
       <AudioPlayer>
         <audio controls>
-          <source src={episodeDetails?.previewUrl} type="audio/mpeg" />
+          <source src={previewUrl} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       </AudioPlayer>

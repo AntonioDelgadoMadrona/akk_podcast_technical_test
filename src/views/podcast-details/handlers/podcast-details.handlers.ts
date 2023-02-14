@@ -30,7 +30,7 @@ const getPodcastDetailsHandler = async ({
     });
     setEpisodeList([...podcastEpisodes]);
   } else {
-    // setError();
+    console.error("Error on getPodcastDetailsHandler()");
   }
   setIsFetching(false);
 };

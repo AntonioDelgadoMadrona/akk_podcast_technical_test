@@ -10,9 +10,20 @@ const getPodcastListHandler = async ({ setPodcastList, setIsFetching }: GetPodca
   const response = await getPodcastListResolver();
   if (response) {
     const { entry } = response;
-    setPodcastList(entry);
+    const filteredEntry: PodcastListItemType[] = entry.map((podcast: any) => {
+      const {
+        id: {
+          attributes: { "im:id": id },
+        },
+        "im:artist": { label: artistName },
+        "im:image": [{ label: image }],
+        "im:name": { label: name },
+      } = podcast;
+      return { id, artistName, image, name };
+    });
+    setPodcastList(filteredEntry);
   } else {
-    // setError();
+    console.error("Error on getPodcastListHandler()");
   }
   setIsFetching(false);
 };
@@ -22,13 +33,8 @@ const filterPodcastListHandler = ({ event, setFilteredPodcastList, setIsFilterin
   if (value) {
     setIsFiltering(true);
     const filteredPodcastList = podcastList.filter((podcast: PodcastListItemType) => {
-      const {
-        "im:name": { label },
-        "im:artist": { label: artistLabel },
-      } = podcast;
-      return (
-        label.toLowerCase().includes(value.toLowerCase()) || artistLabel.toLowerCase().includes(value.toLowerCase())
-      );
+      const { name, artistName } = podcast;
+      return name.toLowerCase().includes(value.toLowerCase()) || artistName.toLowerCase().includes(value.toLowerCase());
     });
     setFilteredPodcastList(filteredPodcastList);
   } else {

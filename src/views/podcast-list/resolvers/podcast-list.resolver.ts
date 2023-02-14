@@ -1,6 +1,5 @@
 // SERVICES
 import { getPodcastListService } from "../services/podcast-list.services";
-// INTERFACES
 
 const getPodcastListResolver = async (): Promise<any> => {
   const response = await getPodcastListService();

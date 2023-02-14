@@ -2,7 +2,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const SummaryPodcastContainer = styled.div`
+export const SummaryPodcastContainer = styled.div.attrs({
+  "data-testid": "summary-podcast-component",
+})`
   display: grid;
   grid-template-rows: max-content auto auto;
   row-gap: 10px;

@@ -2,13 +2,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header.attrs({
+  "data-testid": "header-component",
+})`
   width: 100%;
   height: 80px;
   background-color: #1a73e8;
 `;
 
-export const NavMenu = styled.div`
+export const NavMenu = styled.div.attrs({
+  "data-testid": "nav-menu",
+  })`
   width: 100%;
   height: 100%;
   display: flex;

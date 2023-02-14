@@ -34,7 +34,7 @@ const getEpisodeDetailsHandler = async ({
       trackId,
     });
   } else {
-    // setError();
+    console.error("Error on getEpisodeDetailsHandler()");
   }
   setIsFetching(false);
 };

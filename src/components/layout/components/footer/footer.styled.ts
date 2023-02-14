@@ -1,7 +1,9 @@
 // DEPENDENCIES
 import styled from "styled-components";
 
-export const FooterContainer = styled.footer`
+export const FooterContainer = styled.footer.attrs({
+  "data-testid": "footer-component",
+})`
   width: 100%;
   height: 100px;
   background-color: #1a73e8;
